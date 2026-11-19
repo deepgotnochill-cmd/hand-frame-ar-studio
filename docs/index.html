@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Deep Datta Chaudhury · Hand Frame AR</title>
+    <meta name="description" content="Open an animated portal with your hands. Explore Deep Datta Chaudhury’s browser AR studio with a webcam or an interactive preview." />
+    <meta property="og:title" content="Hand Frame AR Studio · Deep Datta Chaudhury" />
+    <meta property="og:description" content="Two hands open a portal. Try the interactive preview or bring it into your room with a webcam." />
+    <meta property="og:image" content="./studio-cover.png" />
+    <meta name="theme-color" content="#090d16" />
+    <script type="module" crossorigin src="./assets/index-DVa7hLnH.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-BdIobWGQ.css">
+  </head>
+  <body>
+    <header class="mast"><div class="mark" aria-hidden="true">◈</div><span>Frame <strong>Studio</strong></span><span class="byline">Deep Datta Chaudhury</span></header>
+    <main class="workspace">
+    <header class="intro"><h1>Hand Frame <em>AR.</em></h1><p>A little camera experiment. Hold up both hands and my name floats between them.</p></header>
+    <section class="viewer" aria-label="Camera preview"><h2>Viewfinder</h2><div id="stage" class="stage">
+      <video id="video" playsinline muted></video>
+      <canvas id="effect" class="effect" width="640" height="400"></canvas>
+      <canvas id="faceLayer" class="overlay"></canvas>
+      <canvas id="overlay" class="overlay"></canvas>
+      <canvas id="previewPortal" width="640" height="400" hidden aria-label="Animated preview of Deep Datta Chaudhury’s name portal"></canvas>
+      <div id="placeholder" class="placeholder"><div class="nebula" aria-hidden="true"><i style="--i:0"></i><i style="--i:1"></i><i style="--i:2"></i><i style="--i:3"></i><i style="--i:4"></i><i style="--i:5"></i><i style="--i:6"></i><i style="--i:7"></i><i style="--i:8"></i><i style="--i:9"></i><i style="--i:10"></i><i style="--i:11"></i><i style="--i:12"></i><i style="--i:13"></i><i style="--i:14"></i><i style="--i:15"></i><i style="--i:16"></i><i style="--i:17"></i><i style="--i:18"></i><i style="--i:19"></i><i style="--i:20"></i><i style="--i:21"></i><i style="--i:22"></i><i style="--i:23"></i><i style="--i:24"></i><i style="--i:25"></i><i style="--i:26"></i><i style="--i:27"></i></div><div class="corners" aria-hidden="true"></div><span class="standby">Awaiting camera</span></div>
+      <div id="fps" class="fps"></div>
+    </div>
+      <div id="status" class="status idle" role="status" aria-live="polite">Camera off. Try the preview or start your camera.</div>
+    </section>
+    <aside class="console">
+      <h2>Your camera</h2><label class="source-label" for="cameraSource">Camera source</label>
+      <div class="select-row"><select id="cameraSource"><option value="">System default</option></select><button id="refreshCameras" title="Refresh cameras" aria-label="Refresh cameras">↻</button></div>
+      <p id="cameraHelp">Start the camera to see device names. For Iriun, connect your phone and refresh the list.</p>
+      <button id="toggle" class="primary">Start camera</button>
+      <button id="previewToggle" class="preview-toggle" aria-pressed="false">Try it without a camera</button>
+      <details><summary>More effects</summary><div class="options"><fieldset class="effects">
+        <legend>Effect</legend>
+        <label><input type="radio" name="effect" value="web" checked /> Name portal</label>
+        <label><input type="radio" name="effect" value="window" id="windowRadio" disabled /> Character window</label>
+        <label class="file">
+          <input type="file" id="windowFile" accept="image/*" />
+          <span>Load character picture…</span>
+        </label>
+        <label><input type="radio" name="effect" value="face" id="faceRadio" disabled /> Face filter</label>
+        <label class="file">
+          <input type="file" id="faceFile" accept="image/*" />
+          <span>Load face photo…</span>
+        </label>
+        <label><input type="radio" name="effect" value="clip" id="clipRadio" disabled /> My clip</label>
+        <label class="file">
+          <input type="file" id="clipFile" accept="image/*,video/*" />
+          <span>Load image/video…</span>
+        </label>
+      </fieldset>
+
+      <label class="check"><input type="checkbox" id="wholeHead" checked /> Whole head (hair too)</label>
+      <span id="windowControls" class="window-controls" hidden>
+        <label class="check">Size <input type="range" id="windowSize" min="0.5" max="2" step="0.02" value="1" /></label>
+        <label class="check">Up / down <input type="range" id="windowOffset" min="-3" max="3" step="0.05" value="0" /></label>
+        <button id="realign" class="link">Re-pick eyes &amp; chin</button>
+      </span>
+      <label class="check" id="maskSizeLabel" hidden>Mask size <input type="range" id="maskSize" min="0.8" max="1.6" step="0.05" value="1.15" /></label>
+      <label class="check"><input type="checkbox" id="showPoints" /> Show hand points</label>
+    </div></details>
+    </aside>
+    <section class="gesture"><h2>Open the portal</h2><p>Face both palms toward the camera. Point your index fingers up and your thumbs toward each other. Spread your hands to reveal your name.</p></section>
+    </main>
+    <dialog id="alignDialog" class="align">
+      <p id="alignText">Click the character's <b>left eye</b> (on your left).</p>
+      <canvas id="alignCanvas"></canvas>
+      <div class="align-actions">
+        <button id="alignReset" class="link">Start over</button>
+        <button id="alignCancel" class="link">Cancel</button>
+      </div>
+    </dialog>
+
+  </body>
+</html>
